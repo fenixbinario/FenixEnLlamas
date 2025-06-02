@@ -1,0 +1,299 @@
+/* Estilos para botones con efecto Perlin Noise */
+.noise_btn {
+    display: block;
+    position: relative;
+    width: 282px;
+    height: 80px;
+    font-family: var(--font-brand);
+    font-weight: 700;
+    line-height: 26px;
+    text-transform: uppercase;
+    letter-spacing: 2.7px;
+    margin: 20px 30px;
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: auto;
+    opacity: 0;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: 1px solid rgba(242, 92, 31, 0.3);
+    background: rgba(242, 92, 31, 0.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.noise_btn.canvas-ready {
+    opacity: 1;
+}
+
+.noise_btn--bg {
+    color: var(--background-color);
+    background: var(--primary-color);
+    border: none;
+}
+
+.noise_btn strong {
+    position: absolute;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+
+.noise-container {
+    display: block;
+    position: relative;
+}
+
+.noise-canvas {
+    position: absolute;
+    top: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    left: -20px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Líneas cyberpunk decorativas */
+.noise_btn::before,
+.noise_btn::after {
+    content: '';
+    position: absolute;
+    background: var(--primary-color);
+    transition: all var(--transition-normal);
+}
+
+.noise_btn::before {
+    top: 10px;
+    left: -10px;
+    width: 2px;
+    height: 20px;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.noise_btn::after {
+    bottom: 10px;
+    right: -10px;
+    width: 20px;
+    height: 2px;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.noise_btn:hover::before {
+    height: 40px;
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+.noise_btn:hover::after {
+    width: 40px;
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* Efecto de brillo en hover */
+.noise_btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(242, 92, 31, 0.4);
+}
+
+.noise_btn--bg:hover {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Partículas y destellos */
+.noise_btn .spark {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+}
+
+.noise_btn:hover .spark {
+    animation: spark-animation 0.8s ease-out forwards;
+}
+
+@keyframes spark-animation {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--spark-x), var(--spark-y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .noise_btn {
+        width: 100%;
+        max-width: 282px;
+        margin: 10px auto;
+    }
+}
+
+/* Estilos para el botón Neon */
+.noise_btn--neon {
+    background: rgba(15, 15, 15, 0.9);
+    border: 2px solid #F25C1F;
+    box-shadow: 0 0 15px rgba(242, 92, 31, 0.5);
+    color: #F25C1F;
+    overflow: visible;
+}
+
+.noise_btn--neon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 2px;
+    animation: neonPulse 1.5s linear infinite;
+}
+
+.noise_btn--neon:hover {
+    background: rgba(242, 92, 31, 0.1);
+    text-shadow: 0 0 10px #F25C1F;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.noise_btn--neon:hover::before {
+    animation: neonPulse 0.75s linear infinite;
+}
+
+/* Líneas decorativas específicas para el botón neon */
+.noise_btn--neon::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 30px;
+    height: 2px;
+    background: #F25C1F;
+    box-shadow: 0 0 15px #F25C1F;
+    transition: all 0.3s ease;
+}
+
+.noise_btn--neon::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 2px;
+    height: 30px;
+    background: #F25C1F;
+    box-shadow: 0 0 15px #F25C1F;
+    transition: all 0.3s ease;
+}
+
+.noise_btn--neon:hover::after {
+    width: 50px;
+    box-shadow: 0 0 20px #F25C1F;
+}
+
+.noise_btn--neon:hover::before {
+    height: 50px;
+    box-shadow: 0 0 20px #F25C1F;
+}
+
+@keyframes neonPulse {
+    0% {
+        border-color: #F25C1F;
+        box-shadow: 0 0 15px #F25C1F;
+    }
+    50% {
+        border-color: transparent;
+        box-shadow: none;
+    }
+    100% {
+        border-color: #F25C1F;
+        box-shadow: 0 0 15px #F25C1F;
+    }
+}
+
+/* Estilos para el botón Glitch */
+.noise_btn--glitch {
+    background: rgba(192, 57, 43, 0.1);
+    border: 2px solid #C0392B;
+    color: #F2F2F0;
+    position: relative;
+    overflow: hidden;
+}
+
+.noise_btn--glitch::before,
+.noise_btn--glitch::after {
+    content: 'Colaboraciones';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(192, 57, 43, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate3d(0, 0, 0);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.noise_btn--glitch::before {
+    left: -2px;
+    text-shadow: 2px 0 #C0392B;
+    animation: glitch-1 2s infinite linear alternate-reverse;
+}
+
+.noise_btn--glitch::after {
+    left: 2px;
+    text-shadow: -2px 0 #F25C1F;
+    animation: glitch-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+    0%, 100% { clip-path: inset(50% 0 50% 0); }
+    20% { clip-path: inset(0% 0 20% 0); }
+    40% { clip-path: inset(80% 0 0% 0); }
+    60% { clip-path: inset(10% 0 70% 0); }
+    80% { clip-path: inset(30% 0 50% 0); }
+}
+
+@keyframes glitch-2 {
+    0%, 100% { clip-path: inset(40% 0 60% 0); }
+    20% { clip-path: inset(60% 0 0% 0); }
+    40% { clip-path: inset(20% 0 80% 0); }
+    60% { clip-path: inset(70% 0 10% 0); }
+    80% { clip-path: inset(0% 0 30% 0); }
+}
+
+.noise_btn--glitch:hover {
+    background: rgba(192, 57, 43, 0.2);
+    border-color: #C0392B;
+    text-shadow: 0 0 8px #F25C1F;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.noise_btn--glitch .spark {
+    background: #F25C1F;
+}
+
+/* Ajustes responsivos para los nuevos botones */
+@media (max-width: 768px) {
+    .cta-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+} 
