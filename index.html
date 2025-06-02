@@ -4,7 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fenix.Ninja - Renace Digital</title>
+    <meta name="description" content="Fenix.Ninja - Transformamos tu presencia digital con soluciones innovadoras, diseño impactante y tecnología de vanguardia.">
+    <meta name="keywords" content="desarrollo web, diseño digital, SEO, apps móviles, branding digital">
+    <meta name="author" content="Fenix.Ninja">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Fenix.Ninja - Renace Digital">
+    <meta property="og:description" content="Transformamos tu presencia digital con soluciones innovadoras y diseño impactante">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fenix.ninja">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/cinderblock" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/ethnocentric" rel="stylesheet">
+    
+    <!-- PIXI.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/noise-buttons.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <style>
+        @font-face {
+            font-family: 'Ethnocentric';
+            src: url('fonts/ethnocentric/Ethnocentric\ Rg.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'BsLandscope';
+            src: url('fonts/BsLandscope\ Regular/BsLandscope\ Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cinderblock';
+            src: url('https://fonts.cdnfonts.com/s/14746/Cinderblock.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -59,7 +109,7 @@
             width: 120px;
             height: 120px;
             margin: 0 auto;
-            background: #F25C1F;
+            background: #0F0F0F;
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -68,6 +118,15 @@
             animation: float 3s ease-in-out infinite;
             position: relative;
             overflow: hidden;
+        }
+
+        #logo3DContainer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #0F0F0F;
         }
 
         .logo::before {
@@ -92,20 +151,27 @@
         }
 
         .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: #0F0F0F;
+            width: 100px;
+            height: 100px;
+            background: transparent;
             border-radius: 8px;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .logo-icon::before {
-            content: '🔥';
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-image: url('src/logo_unicorn-bg.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         h1 {
@@ -117,6 +183,22 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        h1.font-ethnocentric {
+            font-family: 'Ethnocentric', sans-serif;
+        }
+
+        h1.font-bslandscope {
+            font-family: 'BsLandscope', sans-serif;
+        }
+
+        h1.font-cinderblock {
+            font-family: 'Cinderblock', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         @keyframes glow {
@@ -218,6 +300,40 @@
             transform: translateY(-5px);
             border-color: #F25C1F;
             box-shadow: 0 20px 40px rgba(242, 92, 31, 0.2);
+        }
+
+        .feature-card .card-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .feature-card .card-particle {
+            position: absolute;
+            background: #F25C1F;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover .card-particle {
+            animation: float-card-particle 1.5s ease-out forwards;
+        }
+
+        @keyframes float-card-particle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) translateX(var(--particle-x));
+                opacity: 0;
+            }
         }
 
         .feature-icon {
@@ -326,6 +442,204 @@
                 font-size: 2rem;
             }
         }
+
+        /* Estilos para la visualización de fuentes */
+        .font-preview {
+            margin: 1rem 0;
+            position: relative;
+            display: none;
+        }
+
+        .font-preview.active {
+            display: block;
+        }
+
+        .font-preview h1 {
+            position: relative;
+        }
+
+        /* Efectos de Glitch */
+        @keyframes glitch-text {
+            0% {
+                transform: translate(0);
+                opacity: 1;
+            }
+            20% {
+                transform: translate(-5px, 5px);
+                opacity: 0.9;
+            }
+            40% {
+                transform: translate(-5px, -5px);
+                opacity: 0.8;
+                text-shadow: 2px 2px #F25C1F, -2px -2px #0ff;
+            }
+            60% {
+                transform: translate(5px, 5px);
+                opacity: 0.7;
+                text-shadow: -2px 2px #F25C1F, 2px -2px #0ff;
+            }
+            80% {
+                transform: translate(5px, -5px);
+                opacity: 0.6;
+                text-shadow: 2px -2px #F25C1F, -2px 2px #0ff;
+            }
+            100% {
+                transform: translate(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes glitch-in {
+            0% {
+                transform: translate(0);
+                opacity: 0;
+            }
+            20% {
+                transform: translate(-10px, 10px);
+                opacity: 0.2;
+            }
+            40% {
+                transform: translate(-10px, -10px);
+                opacity: 0.4;
+                text-shadow: 4px 4px #F25C1F, -4px -4px #0ff;
+            }
+            60% {
+                transform: translate(10px, 10px);
+                opacity: 0.6;
+                text-shadow: -4px 4px #F25C1F, 4px -4px #0ff;
+            }
+            80% {
+                transform: translate(10px, -10px);
+                opacity: 0.8;
+                text-shadow: 4px -4px #F25C1F, -4px 4px #0ff;
+            }
+            100% {
+                transform: translate(0);
+                opacity: 1;
+            }
+        }
+
+        .font-preview.glitch-out h1 {
+            animation: glitch-text 0.5s forwards;
+        }
+
+        .font-preview.glitch-in h1 {
+            animation: glitch-in 0.5s forwards;
+        }
+
+        /* Estilos para las chispas */
+        .spark {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #F25C1F;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes spark-animation {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--spark-x), var(--spark-y)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Estilos para el efecto typing */
+        .typing-effect {
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+        }
+
+        .typing-effect.active {
+            opacity: 1;
+        }
+
+        .typing-effect span {
+            opacity: 0;
+            display: inline-block;
+        }
+
+        .typing-effect span.visible {
+            opacity: 1;
+        }
+
+        .typing-effect .caret {
+            display: inline-block;
+            opacity: 0;
+            color: #F25C1F;
+            margin-left: 1px;
+            font-weight: bold;
+            animation: caret 1s infinite;
+        }
+
+        .typing-effect .caret.visible {
+            opacity: 1;
+        }
+
+        @keyframes caret {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .typing-effect.finished .caret {
+            display: none;
+        }
+
+        /* Estilos para el efecto matrix typing */
+        .matrix-typing-effect {
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+        }
+
+        .matrix-typing-effect.active {
+            opacity: 1;
+        }
+
+        .matrix-typing-effect span {
+            opacity: 0;
+            display: inline-block;
+        }
+
+        .matrix-typing-effect span.visible {
+            opacity: 1;
+        }
+
+        .matrix-typing-effect .matrix-char {
+            display: inline-block;
+            opacity: 0;
+            color: #F25C1F;
+            font-family: monospace;
+            position: absolute;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-shadow: 0 0 5px #F25C1F;
+            animation: matrixFade 0.8s forwards;
+            z-index: 10;
+        }
+
+        @keyframes matrixFade {
+            0% { 
+                opacity: 0.8; 
+                transform: translateY(-20px);
+                color: rgba(242, 92, 31, 0.6);
+            }
+            50% { 
+                opacity: 0.7;
+                color: rgba(242, 92, 31, 0.5);
+            }
+            100% { 
+                opacity: 0.3; 
+                transform: translateY(10px);
+                color: rgba(242, 92, 31, 0.3);
+            }
+        }
     </style>
 </head>
 <body>
@@ -334,17 +648,26 @@
         <div class="hero-content">
             <div class="logo-container">
                 <div class="logo">
-                    <div class="logo-icon"></div>
+                    <div id="logo3DContainer"></div>
                 </div>
             </div>
-            <h1>FENIX.NINJA</h1>
-            <p class="tagline">Renace Digital. Transforma tu Presencia Online.</p>
-            <p class="description">
-                Como el ave fénix que renace de sus cenizas, transformamos tu presencia digital con soluciones innovadoras, diseño impactante y tecnología de vanguardia. Especialistas en desarrollo web, branding digital y estrategias que impulsan tu negocio hacia el éxito.
-            </p>
+            <div class="font-preview" >
+                <h1 class="font-ethnocentric">FENIX.NINJA</h1>
+            </div>
+            <div class="font-preview" >
+                <h1 class="font-bslandscope">FENIX.NINJA</h1>
+            </div>
+            <div class="font-preview" >
+                <h1 class="font-cinderblock">FENIX.NINJA</h1>
+            </div>
+            <p class="tagline" id="revolution-text">En la 5ª revolución industrial, las fabricas serán nuestras casas y los trabajadores serán una extensión de nosotros mismos.</p>
+            <p class="tagline" id="japanese-text">En la 5ª revolución industrial, las fabricas serán nuestras casas y los trabajadores serán una extensión de nosotros mismos.</p>
+
             <div class="cta-container">
-                <a href="#contacto" class="cta-button">Comenzar Proyecto</a>
-                <a href="#servicios" class="cta-button secondary">Ver Servicios</a>
+                <a href="#contacto" class="noise_btn noise_btn--bg"><strong>Comenzar Proyecto</strong></a>
+                <a href="#servicios" class="noise_btn noise_btn--border"><strong>Ver Servicios</strong></a>
+                <a href="#academia" class="noise_btn noise_btn--neon"><strong>Academia</strong></a>
+                <a href="#colaboraciones" class="noise_btn noise_btn--glitch"><strong>Colaboraciones</strong></a>
             </div>
         </div>
     </section>
@@ -413,6 +736,61 @@
     </footer>
 
     <script>
+        // Configuración del renderizador 3D
+        function init3DLogo() {
+            const container = document.getElementById('logo3DContainer');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            
+            renderer.setSize(120, 120);
+            renderer.setClearColor(0x0F0F0F, 0.5);
+            container.appendChild(renderer.domElement);
+            
+            // Configuración de la luz
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xF25C1F, 1.2);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+            
+            camera.position.z = 2.5;
+            
+            // Cargar el modelo GLTF
+            const loader = new THREE.GLTFLoader();
+            loader.load(
+                'src/Unicorn_texture.glb',
+                function (gltf) {
+                    const model = gltf.scene;
+                    
+                    // Ajustar escala y posición del modelo
+                    model.scale.set(1.5, 1.5, 1.5);
+                    model.position.set(0, -0.25, 0);
+                    
+                    // Ajustar rotación inicial
+                    model.rotation.x = -0.2;
+                    
+                    scene.add(model);
+                    
+                    // Animación
+                    function animate() {
+                        requestAnimationFrame(animate);
+                        model.rotation.y += 0.005; // Velocidad de rotación más suave
+                        renderer.render(scene, camera);
+                    }
+                    animate();
+                },
+                // Callback de progreso de carga
+                function (progress) {
+                    console.log('Cargando modelo:', (progress.loaded / progress.total * 100) + '%');
+                },
+                function (error) {
+                    console.error('Error cargando el modelo:', error);
+                }
+            );
+        }
+
         // Crear partículas flotantes
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
@@ -431,6 +809,42 @@
                 
                 particlesContainer.appendChild(particle);
             }
+        }
+
+        // Función para crear partículas en las feature cards
+        function createCardParticles() {
+            const cards = document.querySelectorAll('.feature-card');
+            
+            cards.forEach(card => {
+                // Crear contenedor de partículas
+                const particlesContainer = document.createElement('div');
+                particlesContainer.className = 'card-particles';
+                card.appendChild(particlesContainer);
+
+                // Crear partículas
+                for (let i = 0; i < 15; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'card-particle';
+                    
+                    // Tamaño aleatorio entre 3 y 6 píxeles
+                    const size = Math.random() * 3 + 3;
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    
+                    // Posición inicial aleatoria en la parte inferior
+                    particle.style.bottom = '0';
+                    particle.style.left = Math.random() * 100 + '%';
+                    
+                    // Dirección X aleatoria para el movimiento
+                    const xDirection = (Math.random() - 0.5) * 100;
+                    particle.style.setProperty('--particle-x', `${xDirection}px`);
+                    
+                    // Retraso aleatorio en la animación
+                    particle.style.animationDelay = Math.random() * 0.5 + 's';
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            });
         }
 
         // Smooth scrolling para enlaces internos
@@ -467,10 +881,206 @@
             });
         }
 
+        // Función para crear chispas
+        function createSparks(element, quantity) {
+            const rect = element.getBoundingClientRect();
+            const container = document.createElement('div');
+            container.style.position = 'absolute';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '100%';
+            container.style.height = '100%';
+            container.style.overflow = 'hidden';
+            element.style.position = 'relative';
+            element.appendChild(container);
+
+            for (let i = 0; i < quantity; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                
+                // Posición inicial aleatoria dentro del elemento
+                const startX = Math.random() * rect.width;
+                const startY = Math.random() * rect.height;
+                spark.style.left = startX + 'px';
+                spark.style.top = startY + 'px';
+
+                // Dirección aleatoria para el movimiento
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const sparkX = Math.cos(angle) * distance;
+                const sparkY = Math.sin(angle) * distance;
+
+                // Tamaño aleatorio
+                const size = 2 + Math.random() * 3;
+                spark.style.width = size + 'px';
+                spark.style.height = size + 'px';
+
+                // Establecer variables CSS personalizadas para la animación
+                spark.style.setProperty('--spark-x', sparkX + 'px');
+                spark.style.setProperty('--spark-y', sparkY + 'px');
+
+                // Aplicar animación con retraso aleatorio
+                spark.style.animation = `spark-animation ${0.3 + Math.random() * 0.3}s ease-out forwards`;
+                spark.style.animationDelay = (Math.random() * 0.2) + 's';
+
+                container.appendChild(spark);
+            }
+
+            // Limpiar las chispas después de la animación
+            setTimeout(() => {
+                element.removeChild(container);
+            }, 1000);
+        }
+
+        // Función para manejar la transición de fuentes con efecto glitch
+        function initFontTransitions() {
+            const previews = document.querySelectorAll('.font-preview');
+            let currentIndex = 0;
+            previews[currentIndex].classList.add('active');
+
+            function transition() {
+                const current = previews[currentIndex];
+                currentIndex = (currentIndex + 1) % previews.length;
+                const next = previews[currentIndex];
+
+                // Aplicar efecto de salida al elemento actual
+                current.classList.add('glitch-out');
+                createSparks(current, 30); // Añadir chispas al elemento actual
+
+                setTimeout(() => {
+                    current.classList.remove('active');
+                    current.classList.remove('glitch-out');
+                    
+                    // Mostrar y animar la entrada del siguiente elemento
+                    next.classList.add('active');
+                    next.classList.add('glitch-in');
+                    createSparks(next, 30); // Añadir chispas al siguiente elemento
+                    
+                    setTimeout(() => {
+                        next.classList.remove('glitch-in');
+                    }, 500);
+                }, 500);
+            }
+
+            // Iniciar transiciones con intervalos aleatorios
+            function scheduleNextTransition() {
+                const randomDelay = Math.random() * 2000 + 3000; // Entre 3 y 5 segundos
+                setTimeout(() => {
+                    transition();
+                    scheduleNextTransition();
+                }, randomDelay);
+            }
+
+            scheduleNextTransition();
+        }
+
+        // Función para el efecto matrix typing
+        function createMatrixTypingEffect(element, speed = 50) {
+            console.log('Iniciando efecto matrix para:', element);
+            
+            // Caracteres japoneses (katakana)
+            const japaneseChars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ';
+            
+            // Preparar el elemento
+            const text = element.textContent;
+            element.textContent = '';
+            element.classList.add('matrix-typing-effect');
+            
+            // Crear un span para cada carácter, preservando espacios
+            const chars = [];
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                if (char === ' ') {
+                    span.innerHTML = '&nbsp;';
+                } else {
+                    span.textContent = char;
+                }
+                element.appendChild(span);
+                chars.push(span);
+            });
+
+            // Función para crear efecto matrix
+            function createMatrixEffect(char) {
+                if (char.innerHTML === '&nbsp;') return;
+
+                const matrixChar = document.createElement('span');
+                matrixChar.className = 'matrix-char';
+                
+                // Posición inicial
+                const rect = char.getBoundingClientRect();
+                const elementRect = element.getBoundingClientRect();
+                
+                matrixChar.style.left = (rect.left - elementRect.left) + 'px';
+                matrixChar.style.top = (rect.top - elementRect.top) + 'px';
+                
+                // Seleccionar carácter japonés aleatorio
+                matrixChar.textContent = japaneseChars[Math.floor(Math.random() * japaneseChars.length)];
+                
+                element.appendChild(matrixChar);
+                
+                // Crear múltiples caracteres con retraso
+                let count = 0;
+                const maxChars = 3;
+                const interval = setInterval(() => {
+                    matrixChar.textContent = japaneseChars[Math.floor(Math.random() * japaneseChars.length)];
+                    count++;
+                    if (count >= maxChars) {
+                        clearInterval(interval);
+                        matrixChar.remove();
+                    }
+                }, 100);
+            }
+
+            // Iniciar la animación
+            element.classList.add('active');
+            let index = 0;
+            
+            function showNextChar() {
+                if (index < chars.length) {
+                    const currentChar = chars[index];
+                    currentChar.classList.add('visible');
+                    createMatrixEffect(currentChar);
+                    index++;
+                    setTimeout(showNextChar, speed);
+                } else {
+                    element.classList.add('finished');
+                    console.log('Efecto matrix completado');
+                }
+            }
+            
+            showNextChar();
+        }
+
         // Inicializar efectos
         document.addEventListener('DOMContentLoaded', function() {
+            init3DLogo();
             createParticles();
             animateCardsOnScroll();
+            createCardParticles();
+            initFontTransitions();
+            
+            // Iniciar el efecto typing en ambos textos
+            const revolutionText = document.getElementById('revolution-text');
+            const japaneseText = document.getElementById('japanese-text');
+            
+            console.log('Elementos encontrados:', { 
+                revolutionText: revolutionText, 
+                japaneseText: japaneseText 
+            });
+
+            // Asegurarnos de que ambos elementos existen
+            if (!revolutionText || !japaneseText) {
+                console.error('No se encontraron los elementos de texto');
+                return;
+            }
+
+            // Iniciar el primer texto con efecto normal
+            createTypingEffect(revolutionText, 40);
+            console.log('Efecto normal iniciado');
+            
+            // Iniciar el segundo texto con efecto matrix inmediatamente
+            createMatrixTypingEffect(japaneseText, 40);
+            console.log('Efecto matrix iniciado');
         });
 
         // Efecto de parallax suave en el hero
@@ -479,6 +1089,120 @@
             const hero = document.querySelector('.hero');
             const rate = scrolled * -0.5;
             hero.style.transform = `translateY(${rate}px)`;
+        });
+
+        // Verificar carga de fuentes
+        document.fonts.ready.then(function() {
+            if (document.fonts.check('1em Cinderblock')) {
+                console.log('Fuente Cinderblock cargada correctamente');
+            } else {
+                console.log('Error: Fuente Cinderblock no se cargó');
+                // Aplicar fuente de respaldo
+                document.querySelector('.font-cinderblock').style.fontFamily = 'Ethnocentric, sans-serif';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupNoiseButtons();
+        });
+
+        // Función para el efecto typing
+        function createTypingEffect(element, speed = 50) {
+            // Preparar el elemento
+            const text = element.textContent;
+            element.textContent = '';
+            element.classList.add('typing-effect');
+            
+            // Crear un span para cada carácter, preservando espacios
+            const chars = [];
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                if (char === ' ') {
+                    span.innerHTML = '&nbsp;'; // Usar espacio no rompible para espacios
+                } else {
+                    span.textContent = char;
+                }
+                element.appendChild(span);
+                chars.push(span);
+
+                // Añadir el caret después de cada carácter
+                const caret = document.createElement('span');
+                caret.textContent = '|';
+                caret.className = 'caret';
+                element.appendChild(caret);
+                chars.push(caret);
+            });
+
+            // Función para crear chispas
+            function createTypingSpark(char) {
+                // No crear chispas para espacios en blanco o caret
+                if (char.innerHTML === '&nbsp;' || char.classList.contains('caret')) return;
+
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                
+                // Posición inicial
+                const rect = char.getBoundingClientRect();
+                const elementRect = element.getBoundingClientRect();
+                
+                spark.style.left = (rect.left - elementRect.left) + 'px';
+                spark.style.top = (rect.top - elementRect.top) + 'px';
+                
+                // Dirección aleatoria
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 30 + Math.random() * 50;
+                const sparkX = Math.cos(angle) * distance;
+                const sparkY = Math.sin(angle) * distance;
+                
+                spark.style.setProperty('--spark-x', sparkX + 'px');
+                spark.style.setProperty('--spark-y', sparkY + 'px');
+                
+                // Animación
+                spark.style.animation = `spark-animation ${0.3 + Math.random() * 0.3}s ease-out forwards`;
+                
+                element.appendChild(spark);
+                
+                // Limpiar chispa después de la animación
+                setTimeout(() => spark.remove(), 1000);
+            }
+
+            // Iniciar la animación
+            element.classList.add('active');
+            let index = 0;
+            let previousCaret = null;
+            
+            function showNextChar() {
+                if (index < chars.length) {
+                    // Ocultar el caret anterior si existe
+                    if (previousCaret) {
+                        previousCaret.style.display = 'none';
+                    }
+                    
+                    const currentChar = chars[index];
+                    currentChar.classList.add('visible');
+                    
+                    if (!currentChar.classList.contains('caret')) {
+                        createTypingSpark(currentChar);
+                    } else {
+                        previousCaret = currentChar;
+                    }
+                    
+                    index++;
+                    setTimeout(showNextChar, speed);
+                } else {
+                    element.classList.add('finished');
+                }
+            }
+            
+            showNextChar();
+        }
+    </script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="js/noise-buttons.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setupNoiseButtons();
         });
     </script>
 </body>
