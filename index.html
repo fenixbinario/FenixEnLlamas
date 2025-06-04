@@ -85,25 +85,20 @@
                         <p class="card-description">Una vez más os presento un proyecto en el que he participado y del que estoy contento con el resultado obtenido en tan poco tiempo. Todo el Lab hemos hecho piña para ayudar.</p>
                     </div>
                     <div class="card-action">
-                        <a href="#" class="noise_btn noise_btn--neon"><strong>Continuar leyendo ...</strong></a>
+                        <a href="#" class="noise_btn noise_btn--neon"><strong>LEER</strong></a>
                     </div>
                 </article>
                 <!-- Card 2 -->
                 <article class="showcase-card">
                     <div class="card-image-container">
-                        <img src="https://via.placeholder.com/400x250/F25C1F/0F0F0F?text=Digital+Nomad" alt="Proyecto Digital Nomad">
-                         <div class="card-image-overlay">
-                            <a href="#" class="card-project-link" aria-label="Ver proyecto Digital Nomad">
-                                <span class="link-icon">🔗</span>
-                            </a>
-                        </div>
+                        <div id="phoenixCardModelContainer" style="width: 100%; height: 100%;"></div>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Nómada Digital IA</h3>
                         <p class="card-description">Explorando nuevas fronteras con inteligencia artificial para la comunidad de nómadas digitales, facilitando la vida y el trabajo remotos.</p>
                     </div>
                     <div class="card-action">
-                        <a href="#" class="noise_btn noise_btn--neon"><strong>Continuar leyendo ...</strong></a>
+                        <a href="#" class="noise_btn noise_btn--neon"><strong>LEER</strong></a>
                     </div>
                 </article>
                 <!-- Card 3 -->
@@ -121,7 +116,7 @@
                         <p class="card-description">Un concepto innovador de urbanismo sostenible, integrando tecnología y naturaleza para crear las metrópolis del mañana.</p>
                     </div>
                     <div class="card-action">
-                        <a href="#" class="noise_btn noise_btn--neon"><strong>Continuar leyendo ...</strong></a>
+                        <a href="#" class="noise_btn noise_btn--neon"><strong>LEER</strong></a>
                     </div>
                 </article>
             </div>
@@ -236,59 +231,153 @@
     </footer>
 
     <script>
-        // Configuración del renderizador 3D
-        function init3DLogo() {
-            const container = document.getElementById('logo3DContainer');
+        // ===== GENERIC 3D MODEL INITIALIZER =====
+        function init3DModel(config) {
+            const container = document.getElementById(config.containerId);
+            if (!container) {
+                console.error(`Contenedor con ID "${config.containerId}" no encontrado.`);
+                return;
+            }
+
+            let containerWidth = container.offsetWidth;
+            // Usar la altura inicial del contenedor si se provee, sino la altura actual del contenedor (puede ser 0 si no está renderizado)
+            let containerHeight = config.initialContainerHeight || container.offsetHeight; 
+
+            if (containerWidth === 0 && config.initialContainerWidth) containerWidth = config.initialContainerWidth;
+            if (containerHeight === 0 && config.initialContainerHeight) containerHeight = config.initialContainerHeight; 
+
+            if (containerWidth === 0 || containerHeight === 0) {
+                console.warn(`El contenedor "${config.containerId}" no tiene dimensiones visibles aún. Intentando más tarde.`);
+                setTimeout(() => init3DModel(config), 100); // Reintentar
+                return;
+            }
+
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(
+                config.cameraFov || 75, 
+                containerWidth / containerHeight, 
+                0.1, 
+                1000
+            );
+
+            if (config.cameraPosition) {
+                camera.position.set(config.cameraPosition.x || 0, config.cameraPosition.y || 0, config.cameraPosition.z || 5);
+            }
+
             const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            
-            renderer.setSize(120, 120);
-            renderer.setClearColor(0x0F0F0F, 0.5);
+            renderer.setSize(containerWidth, containerHeight);
+            renderer.setClearColor(config.backgroundColor || 0x000000, config.backgroundAlpha !== undefined ? config.backgroundAlpha : 0);
+            container.innerHTML = ''; // Limpiar contenedor por si hay reintentos
             container.appendChild(renderer.domElement);
-            
-            // Configuración de la luz
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-            scene.add(ambientLight);
-            
-            const directionalLight = new THREE.DirectionalLight(0xF25C1F, 1.2);
-            directionalLight.position.set(5, 5, 5);
-            scene.add(directionalLight);
-            
-            camera.position.z = 2.5;
-            
-            // Cargar el modelo GLTF
+
+            // Luces
+            if (config.ambientLight) {
+                const ambient = new THREE.AmbientLight(config.ambientLight.color || 0xffffff, config.ambientLight.intensity || 0.5);
+                scene.add(ambient);
+            }
+            if (config.directionalLight) {
+                const directional = new THREE.DirectionalLight(config.directionalLight.color || 0xffffff, config.directionalLight.intensity || 1);
+                directional.position.set(
+                    config.directionalLight.position?.x || 5,
+                    config.directionalLight.position?.y || 5,
+                    config.directionalLight.position?.z || 5
+                );
+                scene.add(directional);
+            }
+
             const loader = new THREE.GLTFLoader();
             loader.load(
-                'src/Unicorn_texture.glb',
+                config.modelPath,
                 function (gltf) {
                     const model = gltf.scene;
-                    
-                    // Ajustar escala y posición del modelo
-                    model.scale.set(1.5, 1.5, 1.5);
-                    model.position.set(0, -0.25, 0);
-                    
-                    // Ajustar rotación inicial
-                    model.rotation.x = -0.2;
-                    
+                    if (config.modelProperties) {
+                        if (config.modelProperties.scale) {
+                            model.scale.set(config.modelProperties.scale.x || 1, config.modelProperties.scale.y || 1, config.modelProperties.scale.z || 1);
+                        }
+                        if (config.modelProperties.position) {
+                            model.position.set(config.modelProperties.position.x || 0, config.modelProperties.position.y || 0, config.modelProperties.position.z || 0);
+                        }
+                        if (config.modelProperties.rotation) {
+                            model.rotation.set(config.modelProperties.rotation.x || 0, config.modelProperties.rotation.y || 0, config.modelProperties.rotation.z || 0);
+                        }
+                    }
                     scene.add(model);
-                    
-                    // Animación
+
                     function animate() {
                         requestAnimationFrame(animate);
-                        model.rotation.y += 0.005; // Velocidad de rotación más suave
+                        if (config.animationClip) {
+                            config.animationClip(model, scene, camera, renderer);
+                        }
                         renderer.render(scene, camera);
                     }
                     animate();
                 },
-                // Callback de progreso de carga
                 function (progress) {
-                    console.log('Cargando modelo:', (progress.loaded / progress.total * 100) + '%');
+                    console.log(`Cargando modelo "${config.modelPath}": ${(progress.loaded / progress.total * 100).toFixed(0)}%`);
                 },
                 function (error) {
-                    console.error('Error cargando el modelo:', error);
+                    console.error(`Error cargando el modelo "${config.modelPath}":`, error);
                 }
             );
+
+            window.addEventListener('resize', () => {
+                let newWidth = container.offsetWidth;
+                let newHeight = config.initialContainerHeight || container.offsetHeight;
+                if (newWidth > 0 && newHeight > 0) {
+                    camera.aspect = newWidth / newHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(newWidth, newHeight);
+                }
+            });
+        }
+
+        // Configuración del renderizador 3D para el LOGO
+        function init3DLogo() {
+            const logoConfig = {
+                containerId: 'logo3DContainer',
+                modelPath: 'src/Unicorn_texture.glb',
+                initialContainerWidth: 120, // Ancho explícito para el logo
+                initialContainerHeight: 120, // Altura explícita para el logo
+                backgroundColor: 0x0F0F0F, 
+                backgroundAlpha: 0.5,
+                cameraPosition: { x: 0, y: 0, z: 2.5 },
+                cameraFov: 75,
+                ambientLight: { color: 0xffffff, intensity: 0.7 },
+                directionalLight: { color: 0xF25C1F, intensity: 1.2, position: { x: 5, y: 5, z: 5 } },
+                modelProperties: {
+                    scale: { x: 1.5, y: 1.5, z: 1.5 },
+                    position: { x: 0, y: -0.25, z: 0 },
+                    rotation: { x: -0.2, y: 0, z: 0 }
+                },
+                animationClip: function(model) {
+                    model.rotation.y += 0.005;
+                }
+            };
+            init3DModel(logoConfig);
+        }
+
+        // Configuración del renderizador 3D para la tarjeta del Fénix
+        function initPhoenixCardModel() {
+            const phoenixConfig = {
+                containerId: 'phoenixCardModelContainer',
+                modelPath: 'src/Phoenix_Flame_texture.glb',
+                initialContainerHeight: 250, // Altura fija definida en CSS para .card-image-container
+                backgroundColor: 0x000000, 
+                backgroundAlpha: 0, // Fondo transparente
+                cameraPosition: { x: 0, y: 1, z: 4 },
+                cameraFov: 50,
+                ambientLight: { color: 0xffffff, intensity: 0.8 },
+                directionalLight: { color: 0xFF8C00, intensity: 1.5, position: { x: 3, y: 5, z: 5 } },
+                modelProperties: {
+                    scale: { x: 1.5, y: 1.5, z: 1.5 },
+                    position: { x: 0, y: 1, z: 0 },
+                    rotation: { x: 0, y: Math.PI / 4, z: 0 }
+                },
+                animationClip: function(model) {
+                    model.rotation.y += 0.01;
+                }
+            };
+            init3DModel(phoenixConfig);
         }
 
         // Crear partículas flotantes
@@ -687,6 +776,13 @@
             } catch (e) {
                 console.error("Error initializing title flame particles:", e);
             }
+
+            // --- Inicialización del Modelo 3D en la Tarjeta de Proyecto ---
+            try {
+                initPhoenixCardModel();
+            } catch (e) {
+                console.error("Error initializing Phoenix Card Model:", e);
+            }
         });
 
         // Efecto de parallax suave en el hero
@@ -711,5 +807,6 @@
     <!-- JavaScript -->
     <script src="js/noise-buttons.js"></script>
     <script src="js/ai-canvas.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

@@ -969,6 +969,27 @@ h1.font-cinderblock {
     }
 }
 
+/* Estilos base para botones en tarjetas de proyecto para hacerlos responsivos y centrados */
+.project-showcase .showcase-card .card-action .noise_btn--neon {
+    width: 100%; 
+    max-width: 280px; /* Un buen max-width base, cercano al original */
+    margin-left: auto; 
+    margin-right: auto;
+    display: block; /* Para que margin auto funcione, y anula el margin original de .noise_btn */
+    margin-top: var(--spacing-sm); /* Ejemplo de margen superior */
+    margin-bottom: var(--spacing-sm); /* Ejemplo de margen inferior */
+     /* Los estilos de padding, height, etc., se heredan de .noise_btn y .noise_btn--neon */
+}
+
+.project-showcase .showcase-card .noise_btn--neon strong {
+    display: flex;           
+    align-items: center;     
+    justify-content: center; 
+    height: 100%;            
+    width: 100%;
+    /* Estilos de position, etc., se heredan de .noise_btn strong */
+}
+
 /* ===== RESPONSIVE STYLES ===== */
 
 /* Estilos para tablets y desktops pequeños */
@@ -1011,6 +1032,29 @@ h1.font-cinderblock {
     .feature-title {
         font-size: 1.4rem;
     }
+
+    /* Ajustar botones en tarjetas de proyecto para tablet */
+    /* ESTAS REGLAS AHORA SON REDUNDANTES POR LOS ESTILOS BASE AÑADIDOS ARRIBA */
+    /*
+    .project-showcase .showcase-card .card-action .noise_btn--neon {
+        width: 100%; 
+        max-width: 260px; 
+        margin-left: auto; 
+        margin-right: auto;
+    }
+    */
+
+    /* Asegurar centrado de texto en botones de proyecto para tablet */
+    /* ESTAS REGLAS AHORA SON REDUNDANTES POR LOS ESTILOS BASE AÑADIDOS ARRIBA */
+    /*
+    .project-showcase .showcase-card .noise_btn--neon strong {
+        display: flex;           
+        align-items: center;     
+        justify-content: center; 
+        height: 100%;            
+        width: 100%;             
+    }
+    */
 }
 
 /* Estilos para tablets en vertical y móviles grandes */
@@ -1067,13 +1111,50 @@ h1.font-cinderblock {
         font-size: 1.3rem;
     }
 
+    /* Ajustar botones en tarjetas de proyecto para tablet (768px) */
+    .project-showcase .showcase-card .card-action .noise_btn--neon {
+        width: 100%; 
+        max-width: 240px; /* Mantenemos este ajuste específico para 768px */
+        margin-left: auto; 
+        margin-right: auto;
+    }
+
+    /* Asegurar centrado de texto en botones de proyecto para tablet (768px) */
+    /* El centrado del strong ya está cubierto por la regla base, no necesita redefinirse aquí */
+    /*
+    .project-showcase .showcase-card .noise_btn--neon strong {
+        display: flex;           
+        align-items: center;     
+        justify-content: center; 
+        height: 100%;            
+        width: 100%;             
+    }
+    */
+
     .nav-menu {
         display: none; /* Ejemplo: ocultar menú para un menú hamburguesa, si se implementara */
-        /* Aquí irían estilos para un menú móvil si se decide implementar */
     }
     .nav-toggle {
         display: flex; /* Mostrar el botón de hamburguesa */
     }
+
+    /* Centrar texto de los botones en la sección de proyectos en móviles */
+    .project-showcase .showcase-card .noise_btn--neon {
+        text-align: center; /* Mantenemos esto por si ayuda al renderizado del texto */
+         max-width: 220px; /* Ajuste específico para móviles pequeños */
+    }
+
+    /* Asegurar centrado de texto en botones de proyecto para móviles (480px) */
+    /* El centrado del strong ya está cubierto por la regla base, no necesita redefinirse aquí */
+    /*
+    .project-showcase .showcase-card .noise_btn--neon strong {
+        display: flex;            
+        align-items: center;      
+        justify-content: center;  
+        height: 100%;             
+        width: 100%;              
+    }
+    */
 }
 
 /* Estilos para móviles pequeños */
@@ -1124,6 +1205,20 @@ h1.font-cinderblock {
     .cta-button {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
+    }
+
+    /* Centrar texto de los botones en la sección de proyectos en móviles */
+    .project-showcase .showcase-card .noise_btn--neon {
+        text-align: center;
+    }
+
+    .project-showcase .showcase-card .noise_btn--neon strong {
+        display: flex;            /* Reestablecer display flex */
+        align-items: center;      /* Para centrado vertical */
+        justify-content: center;  /* Para centrado horizontal */
+        height: 100%;             /* Asegurar que ocupe toda la altura del botón */
+        width: 100%;              /* Asegurar que ocupe todo el ancho del botón */
+        /* Las propiedades como position: absolute, top, left se heredan de .noise_btn strong */
     }
 }
 

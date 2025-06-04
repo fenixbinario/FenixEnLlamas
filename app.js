@@ -376,4 +376,28 @@
 
             input.addEventListener('blur', () => {
                 if (!input.value.trim()) {
-                    input.parentElement.classList
+                    input.parentElement.classList.remove('focused');
+                }
+            });
+        });
+    };
+
+    // ===== INITIALIZATION ===== //
+    const initApp = () => {
+        initLoadingScreen();
+        initNavigation();
+        initScrollEffects();
+        initParticles();
+        initIntersectionObserver();
+        initContactForm();
+        // Aquí se añadirán más inicializaciones de index.html
+    };
+
+    // Wait for the DOM to be fully loaded
+    if (document.readyState === 'loading') { // Todavía cargando
+        document.addEventListener('DOMContentLoaded', initApp);
+    } else { // DOM ya está listo
+        initApp();
+    }
+
+})(); // IIFE end
