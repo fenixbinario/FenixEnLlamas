@@ -520,3 +520,614 @@ body {
     font-weight: 900;
     letter-spacing: 1px;
 }
+
+/* ===== ESTILOS MOVIDOS DE INDEX.HTML ===== */
+
+@font-face {
+    font-family: 'Ethnocentric';
+    src: url('../fonts/ethnocentric/Ethnocentric Rg.otf') format('opentype'); /* Ajustada ruta */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BsLandscope';
+    src: url('../fonts/BsLandscope Regular/BsLandscope Regular.ttf') format('truetype'); /* Ajustada ruta */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cinderblock';
+    src: url('https://fonts.cdnfonts.com/s/14746/Cinderblock.woff') format('woff'); /* Mantenida URL absoluta */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0F0F0F; /* Considerar usar var(--background-color) */
+    color: #F2F2F0; /* Considerar usar var(--text-primary) */
+    overflow-x: hidden;
+}
+
+.hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 100%); /* Considerar usar variables */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(242, 92, 31, 0.1) 0%, transparent 70%); /* Considerar usar variables */
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem; /* Considerar usar var(--spacing-md) */
+}
+
+.logo-container {
+    margin-bottom: 3rem; /* Considerar usar var(--spacing-lg) */
+    position: relative;
+}
+
+.logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    background: #0F0F0F; /* Conflicto con styles.css, este prevalece. Considerar var(--background-color) */
+    border-radius: 20px; /* Considerar usar var(--radius-lg) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 40px rgba(242, 92, 31, 0.3); /* Considerar usar var(--shadow-xl) */
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+#logo3DContainer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #0F0F0F; /* Considerar usar var(--background-color) */
+}
+
+.logo::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shine 2s infinite; /* Conflicto de duración con styles.css, este prevalece */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.logo-icon { /* Este .logo-icon es del HTML original, diferente al de styles.css */
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    border-radius: 8px; /* Considerar var(--radius-sm) */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon::before { /* Este .logo-icon::before es del HTML original */
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-image: url('../src/logo_unicorn-bg.png'); /* Ajustada ruta */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+h1 { /* Estilo global para h1 del HTML original */
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1rem; /* Considerar var(--spacing-sm) */
+    background: linear-gradient(45deg, #F25C1F, #F2F2F0); /* Considerar variables */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+h1.font-ethnocentric {
+    font-family: 'Ethnocentric', sans-serif;
+}
+
+h1.font-bslandscope {
+    font-family: 'BsLandscope', sans-serif;
+}
+
+h1.font-cinderblock {
+    font-family: 'Cinderblock', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 20px rgba(242, 92, 31, 0.5); } /* Considerar variables */
+    to { text-shadow: 0 0 30px rgba(242, 92, 31, 0.8); }
+}
+
+.tagline {
+    font-size: 1.5rem; /* Conflicto con styles.css, este prevalece */
+    margin-bottom: 2rem; /* Considerar var(--spacing-md) */
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.description {
+    font-size: 1.2rem; /* Conflicto con styles.css, este prevalece */
+    line-height: 1.6; /* Conflicto con styles.css, este prevalece */
+    margin-bottom: 3rem; /* Considerar var(--spacing-lg) */
+    opacity: 0.8;
+    max-width: 600px; /* Conflicto con styles.css, este prevalece */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-container {
+    display: flex;
+    gap: 1rem; /* Considerar var(--spacing-sm) */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* .cta-button y .cta-button.secondary del HTML original. Los botones en el HTML usan noise_btn */
+.cta-button {
+    background: linear-gradient(45deg, #F25C1F, #C0392B); /* Considerar variables */
+    color: #F2F2F0; /* Considerar var(--text-primary) */
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px; /* Considerar var(--radius-xl) */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Considerar var(--transition-normal) */
+    text-decoration: none;
+    display: inline-block; /* Conflicto con styles.css, este prevalece */
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(242, 92, 31, 0.4); /* Conflicto con styles.css, este prevalece */
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 2px solid #F25C1F; /* Considerar var(--primary-color) */
+    color: #F25C1F; /* Considerar var(--primary-color) */
+}
+
+.cta-button.secondary:hover {
+    background: #F25C1F; /* Considerar var(--primary-color) */
+    color: #F2F2F0; /* Considerar var(--text-primary) */
+}
+
+.features { /* Sección features */
+    padding: 6rem 2rem; /* Considerar var(--spacing-2xl) var(--spacing-md) */
+    background: linear-gradient(180deg, #0F0F0F 0%, #1a1a1a 100%); /* Considerar variables */
+}
+
+.features-container {
+    max-width: 1200px; /* Conflicto con styles.css, este prevalece */
+    margin: 0 auto;
+}
+
+.features-title { /* Título de la sección features */
+    text-align: center;
+    font-size: 3rem; /* Conflicto con styles.css, este prevalece */
+    margin-bottom: 4rem; /* Considerar var(--spacing-xl) o var(--spacing-2xl) */
+    color: #F25C1F; /* Considerar var(--primary-color) */
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Conflicto con styles.css, este prevalece */
+    gap: 2rem; /* Considerar var(--spacing-md) */
+}
+
+.feature-card {
+    background: rgba(242, 92, 31, 0.05); /* Conflicto con styles.css, este prevalece */
+    border: 1px solid rgba(242, 92, 31, 0.2); /* Conflicto con styles.css, este prevalece */
+    border-radius: 15px; /* Considerar var(--radius-md) */
+    padding: 2rem; /* Considerar var(--spacing-md) */
+    text-align: center;
+    transition: all 0.3s ease; /* Considerar var(--transition-normal) */
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: #F25C1F; /* Considerar var(--primary-color) */
+    box-shadow: 0 20px 40px rgba(242, 92, 31, 0.2); /* Conflicto con styles.css, este prevalece */
+}
+
+.feature-card .card-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.feature-card .card-particle {
+    position: absolute;
+    background: #F25C1F; /* Considerar var(--primary-color) */
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .card-particle {
+    animation: float-card-particle 1.5s ease-out forwards;
+}
+
+@keyframes float-card-particle {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100px) translateX(var(--particle-x));
+        opacity: 0;
+    }
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem; /* Considerar var(--spacing-sm) */
+    color: #F25C1F; /* Considerar var(--primary-color) */
+}
+
+.feature-title { /* Título dentro de la feature-card */
+    font-size: 1.5rem;
+    margin-bottom: 1rem; /* Considerar var(--spacing-sm) */
+    color: #F2F2F0; /* Considerar var(--text-primary) */
+}
+
+.feature-description {
+    color: rgba(242, 242, 240, 0.8); /* Considerar var(--text-secondary) */
+    line-height: 1.6; /* Conflicto con styles.css, este prevalece */
+}
+
+.footer {
+    background: #0F0F0F; /* Considerar var(--background-color) */
+    padding: 3rem 2rem; /* Considerar var(--spacing-lg) var(--spacing-md) */
+    text-align: center;
+    border-top: 1px solid rgba(242, 92, 31, 0.2); /* Considerar var(--primary-color) con opacidad */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Considerar var(--spacing-md) */
+    flex-wrap: wrap;
+    margin-bottom: 2rem; /* Considerar var(--spacing-md) */
+}
+
+.contact-item {
+    color: #F25C1F; /* Considerar var(--primary-color) */
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease; /* Considerar var(--transition-normal) */
+}
+
+.contact-item:hover {
+    color: #F2F2F0; /* Considerar var(--text-primary) */
+    text-shadow: 0 0 10px rgba(242, 92, 31, 0.5); /* Considerar variables */
+}
+
+.particles { /* Contenedor de partículas del hero */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: #F25C1F; /* Considerar var(--primary-color) */
+    border-radius: 50%;
+    animation: float-particle 6s infinite linear; /* Conflicto de duración con styles.css, este prevalece */
+    opacity: 0.1;
+}
+
+@keyframes float-particle {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.2rem;
+    }
+    
+    .description {
+        font-size: 1rem;
+    }
+    
+    .cta-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .features-title {
+        font-size: 2rem;
+    }
+}
+
+/* Estilos para la visualización de fuentes */
+.font-preview {
+    margin: 1rem 0;
+    position: relative;
+    display: none;
+}
+
+.font-preview.active {
+    display: block;
+}
+
+.font-preview h1 {
+    position: relative;
+}
+
+/* Efectos de Glitch */
+@keyframes glitch-text {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-5px, 5px);
+        opacity: 0.9;
+    }
+    40% {
+        transform: translate(-5px, -5px);
+        opacity: 0.8;
+        text-shadow: 2px 2px #F25C1F, -2px -2px #0ff; /* Considerar var(--primary-color) */
+    }
+    60% {
+        transform: translate(5px, 5px);
+        opacity: 0.7;
+        text-shadow: -2px 2px #F25C1F, 2px -2px #0ff;
+    }
+    80% {
+        transform: translate(5px, -5px);
+        opacity: 0.6;
+        text-shadow: 2px -2px #F25C1F, -2px 2px #0ff;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 0;
+    }
+}
+
+@keyframes glitch-in {
+    0% {
+        transform: translate(0);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-10px, 10px);
+        opacity: 0.2;
+    }
+    40% {
+        transform: translate(-10px, -10px);
+        opacity: 0.4;
+        text-shadow: 4px 4px #F25C1F, -4px -4px #0ff; /* Considerar var(--primary-color) */
+    }
+    60% {
+        transform: translate(10px, 10px);
+        opacity: 0.6;
+        text-shadow: -4px 4px #F25C1F, 4px -4px #0ff;
+    }
+    80% {
+        transform: translate(10px, -10px);
+        opacity: 0.8;
+        text-shadow: 4px -4px #F25C1F, -4px 4px #0ff;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+.font-preview.glitch-out h1 {
+    animation: glitch-text 0.5s forwards;
+}
+
+.font-preview.glitch-in h1 {
+    animation: glitch-in 0.5s forwards;
+}
+
+/* Estilos para las chispas */
+.spark {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #F25C1F; /* Considerar var(--primary-color) */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes spark-animation {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--spark-x), var(--spark-y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Estilos para el efecto typing */
+.typing-effect {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+.typing-effect.active {
+    opacity: 1;
+}
+
+.typing-effect span {
+    opacity: 0;
+    display: inline-block;
+}
+
+.typing-effect span.visible {
+    opacity: 1;
+}
+
+.typing-effect .caret {
+    display: inline-block;
+    opacity: 0;
+    color: #F25C1F; /* Considerar var(--primary-color) */
+    margin-left: 1px;
+    font-weight: bold;
+    animation: caret 1s infinite;
+}
+
+.typing-effect .caret.visible {
+    opacity: 1;
+}
+
+@keyframes caret {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.typing-effect.finished .caret {
+    display: none;
+}
+
+/* Estilos para el efecto matrix typing */
+.matrix-typing-effect {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+.matrix-typing-effect.active {
+    opacity: 1;
+}
+
+.matrix-typing-effect span {
+    opacity: 0;
+    display: inline-block;
+}
+
+.matrix-typing-effect span.visible {
+    opacity: 1;
+}
+
+.matrix-typing-effect .matrix-char {
+    display: inline-block;
+    opacity: 0;
+    color: #F25C1F; /* Considerar var(--primary-color) */
+    font-family: monospace;
+    position: absolute;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 0 0 5px #F25C1F; /* Considerar var(--primary-color) */
+    animation: matrixFade 0.8s forwards;
+    z-index: 10;
+}
+
+@keyframes matrixFade {
+    0% { 
+        opacity: 0.8; 
+        transform: translateY(-20px);
+        color: rgba(242, 92, 31, 0.6); /* Considerar var(--primary-color) con opacidad */
+    }
+    50% { 
+        opacity: 0.7;
+        color: rgba(242, 92, 31, 0.5);
+    }
+    100% { 
+        opacity: 0.3; 
+        transform: translateY(10px);
+        color: rgba(242, 92, 31, 0.3);
+    }
+}
