@@ -535,71 +535,6 @@ body {
     font-display: swap;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #0F0F0F; /* Considerar usar var(--background-color) */
-    color: #F2F2F0; /* Considerar usar var(--text-primary) */
-    overflow-x: hidden;
-}
-
-.hero {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 100%); /* Considerar usar variables */
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(242, 92, 31, 0.1) 0%, transparent 70%); /* Considerar usar variables */
-    animation: pulse 4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.7; }
-}
-
-.hero-content {
-    text-align: center;
-    z-index: 2;
-    max-width: 800px;
-    padding: 2rem; /* Considerar usar var(--spacing-md) */
-}
-
-.logo-container {
-    margin-bottom: 3rem; /* Considerar usar var(--spacing-lg) */
-    position: relative;
-}
-
-.logo {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-    background: #0F0F0F; /* Conflicto con styles.css, este prevalece. Considerar var(--background-color) */
-    border-radius: 20px; /* Considerar usar var(--radius-lg) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 40px rgba(242, 92, 31, 0.3); /* Considerar usar var(--shadow-xl) */
-    animation: float 3s ease-in-out infinite;
-    position: relative;
-    overflow: hidden;
-}
-
 #logo3DContainer {
     width: 100%;
     height: 100%;
@@ -609,60 +544,28 @@ body {
     background: #0F0F0F; /* Considerar usar var(--background-color) */
 }
 
-.logo::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-    animation: shine 2s infinite; /* Conflicto de duración con styles.css, este prevalece */
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-@keyframes shine {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-}
-
-.logo-icon { /* Este .logo-icon es del HTML original, diferente al de styles.css */
+.logo-icon {
     width: 100px;
     height: 100px;
     background: transparent;
-    border-radius: 8px; /* Considerar var(--radius-sm) */
+    border-radius: 8px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.logo-icon::before { /* Este .logo-icon::before es del HTML original */
+.logo-icon::before {
     content: '';
     position: absolute;
     top: -10%;
     left: -10%;
     width: 120%;
     height: 120%;
-    background-image: url('../src/logo_unicorn-bg.png'); /* Ajustada ruta */
+    background-image: url('../src/logo_unicorn-bg.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-h1 { /* Estilo global para h1 del HTML original */
-    font-size: 4rem;
-    font-weight: 900;
-    margin-bottom: 1rem; /* Considerar var(--spacing-sm) */
-    background: linear-gradient(45deg, #F25C1F, #F2F2F0); /* Considerar variables */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: glow 2s ease-in-out infinite alternate;
 }
 
 h1.font-ethnocentric {
@@ -682,93 +585,36 @@ h1.font-cinderblock {
 }
 
 @keyframes glow {
-    from { text-shadow: 0 0 20px rgba(242, 92, 31, 0.5); } /* Considerar variables */
+    from { text-shadow: 0 0 20px rgba(242, 92, 31, 0.5); }
     to { text-shadow: 0 0 30px rgba(242, 92, 31, 0.8); }
 }
 
-.tagline {
-    font-size: 1.5rem; /* Conflicto con styles.css, este prevalece */
-    margin-bottom: 2rem; /* Considerar var(--spacing-md) */
-    opacity: 0.9;
-    font-weight: 300;
-}
-
-.description {
-    font-size: 1.2rem; /* Conflicto con styles.css, este prevalece */
-    line-height: 1.6; /* Conflicto con styles.css, este prevalece */
-    margin-bottom: 3rem; /* Considerar var(--spacing-lg) */
-    opacity: 0.8;
-    max-width: 600px; /* Conflicto con styles.css, este prevalece */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.cta-container {
-    display: flex;
-    gap: 1rem; /* Considerar var(--spacing-sm) */
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* .cta-button y .cta-button.secondary del HTML original. Los botones en el HTML usan noise_btn */
-.cta-button {
-    background: linear-gradient(45deg, #F25C1F, #C0392B); /* Considerar variables */
-    color: #F2F2F0; /* Considerar var(--text-primary) */
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 50px; /* Considerar var(--radius-xl) */
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Considerar var(--transition-normal) */
-    text-decoration: none;
-    display: inline-block; /* Conflicto con styles.css, este prevalece */
-    position: relative;
-    overflow: hidden;
-}
-
-.cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(242, 92, 31, 0.4); /* Conflicto con styles.css, este prevalece */
-}
-
-.cta-button.secondary {
-    background: transparent;
-    border: 2px solid #F25C1F; /* Considerar var(--primary-color) */
-    color: #F25C1F; /* Considerar var(--primary-color) */
-}
-
-.cta-button.secondary:hover {
-    background: #F25C1F; /* Considerar var(--primary-color) */
-    color: #F2F2F0; /* Considerar var(--text-primary) */
-}
-
-.features { /* Sección features */
-    padding: var(--spacing-2xl) var(--spacing-md); /* Unificado, antes 6rem 2rem */
-    background: linear-gradient(180deg, var(--surface-color) 0%, var(--background-color) 100%); /* Unificado */
+.features {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    background: linear-gradient(180deg, var(--surface-color) 0%, var(--background-color) 100%);
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Unificado, antes 300px */
-    gap: var(--spacing-md); /* Unificado, antes 2rem */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-md);
 }
 
 .feature-card {
-    background: rgba(242, 92, 31, 0.05); /* Conflicto con styles.css, este prevalece */
-    border: 1px solid rgba(242, 92, 31, 0.2); /* Conflicto con styles.css, este prevalece */
-    border-radius: 15px; /* Considerar var(--radius-md) */
-    padding: 2rem; /* Considerar var(--spacing-md) */
+    background: rgba(242, 92, 31, 0.05);
+    border: 1px solid rgba(242, 92, 31, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
     text-align: center;
-    transition: all 0.3s ease; /* Considerar var(--transition-normal) */
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
-    border-color: #F25C1F; /* Considerar var(--primary-color) */
-    box-shadow: 0 20px 40px rgba(242, 92, 31, 0.2); /* Conflicto con styles.css, este prevalece */
+    border-color: #F25C1F;
+    box-shadow: 0 20px 40px rgba(242, 92, 31, 0.2);
 }
 
 .feature-card .card-particles {
@@ -783,7 +629,7 @@ h1.font-cinderblock {
 
 .feature-card .card-particle {
     position: absolute;
-    background: #F25C1F; /* Considerar var(--primary-color) */
+    background: #F25C1F;
     border-radius: 50%;
     pointer-events: none;
     opacity: 0;
@@ -807,27 +653,27 @@ h1.font-cinderblock {
 
 .feature-icon {
     font-size: 3rem;
-    margin-bottom: 1rem; /* Considerar var(--spacing-sm) */
-    color: #F25C1F; /* Considerar var(--primary-color) */
+    margin-bottom: 1rem;
+    color: #F25C1F;
 }
 
-.feature-title { /* Título dentro de la feature-card */
+.feature-title {
     font-size: 1.5rem;
-    margin-bottom: 1rem; /* Unificado, antes 1rem */
-    color: var(--text-primary); /* Unificado, antes #F2F2F0 */
-    font-weight: 700; /* Añadido para consistencia si es necesario, ya estaba en la base */
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 700;
 }
 
 .feature-description {
-    color: rgba(242, 242, 240, 0.8); /* Considerar var(--text-secondary) */
-    line-height: 1.6; /* Conflicto con styles.css, este prevalece */
+    color: rgba(242, 242, 240, 0.8);
+    line-height: 1.6;
 }
 
 .footer {
-    background: #0F0F0F; /* Considerar var(--background-color) */
-    padding: 3rem 2rem; /* Considerar var(--spacing-lg) var(--spacing-md) */
+    background: #0F0F0F;
+    padding: 3rem 2rem;
     text-align: center;
-    border-top: 1px solid rgba(242, 92, 31, 0.2); /* Considerar var(--primary-color) con opacidad */
+    border-top: 1px solid rgba(242, 92, 31, 0.2);
 }
 
 .footer-content {
@@ -838,24 +684,24 @@ h1.font-cinderblock {
 .contact-info {
     display: flex;
     justify-content: center;
-    gap: 2rem; /* Considerar var(--spacing-md) */
+    gap: 2rem;
     flex-wrap: wrap;
-    margin-bottom: 2rem; /* Considerar var(--spacing-md) */
+    margin-bottom: 2rem;
 }
 
 .contact-item {
-    color: #F25C1F; /* Considerar var(--primary-color) */
+    color: #F25C1F;
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.3s ease; /* Considerar var(--transition-normal) */
+    transition: all 0.3s ease;
 }
 
 .contact-item:hover {
-    color: #F2F2F0; /* Considerar var(--text-primary) */
-    text-shadow: 0 0 10px rgba(242, 92, 31, 0.5); /* Considerar variables */
+    color: #F2F2F0;
+    text-shadow: 0 0 10px rgba(242, 92, 31, 0.5);
 }
 
-.particles { /* Contenedor de partículas del hero */
+.particles {
     position: absolute;
     top: 0;
     left: 0;
@@ -867,9 +713,9 @@ h1.font-cinderblock {
 
 .particle {
     position: absolute;
-    background: #F25C1F; /* Considerar var(--primary-color) */
+    background: #F25C1F;
     border-radius: 50%;
-    animation: float-particle 6s infinite linear; /* Conflicto de duración con styles.css, este prevalece */
+    animation: float-particle 6s infinite linear;
     opacity: 0.1;
 }
 
@@ -887,223 +733,6 @@ h1.font-cinderblock {
     100% {
         transform: translateY(-100px) rotate(360deg);
         opacity: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    .tagline {
-        font-size: 1.2rem;
-    }
-    
-    .description {
-        font-size: 1rem;
-    }
-    
-    .cta-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-/* Estilos para la visualización de fuentes */
-.font-preview {
-    margin: 1rem 0;
-    position: relative;
-    display: none;
-}
-
-.font-preview.active {
-    display: block;
-}
-
-.font-preview h1 {
-    position: relative;
-}
-
-/* Efectos de Glitch */
-@keyframes glitch-text {
-    0% {
-        transform: translate(0);
-        opacity: 1;
-    }
-    20% {
-        transform: translate(-5px, 5px);
-        opacity: 0.9;
-    }
-    40% {
-        transform: translate(-5px, -5px);
-        opacity: 0.8;
-        text-shadow: 2px 2px #F25C1F, -2px -2px #0ff; /* Considerar var(--primary-color) */
-    }
-    60% {
-        transform: translate(5px, 5px);
-        opacity: 0.7;
-        text-shadow: -2px 2px #F25C1F, 2px -2px #0ff;
-    }
-    80% {
-        transform: translate(5px, -5px);
-        opacity: 0.6;
-        text-shadow: 2px -2px #F25C1F, -2px 2px #0ff;
-    }
-    100% {
-        transform: translate(0);
-        opacity: 0;
-    }
-}
-
-@keyframes glitch-in {
-    0% {
-        transform: translate(0);
-        opacity: 0;
-    }
-    20% {
-        transform: translate(-10px, 10px);
-        opacity: 0.2;
-    }
-    40% {
-        transform: translate(-10px, -10px);
-        opacity: 0.4;
-        text-shadow: 4px 4px #F25C1F, -4px -4px #0ff; /* Considerar var(--primary-color) */
-    }
-    60% {
-        transform: translate(10px, 10px);
-        opacity: 0.6;
-        text-shadow: -4px 4px #F25C1F, 4px -4px #0ff;
-    }
-    80% {
-        transform: translate(10px, -10px);
-        opacity: 0.8;
-        text-shadow: 4px -4px #F25C1F, -4px 4px #0ff;
-    }
-    100% {
-        transform: translate(0);
-        opacity: 1;
-    }
-}
-
-.font-preview.glitch-out h1 {
-    animation: glitch-text 0.5s forwards;
-}
-
-.font-preview.glitch-in h1 {
-    animation: glitch-in 0.5s forwards;
-}
-
-/* Estilos para las chispas */
-.spark {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #F25C1F; /* Considerar var(--primary-color) */
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 2;
-}
-
-@keyframes spark-animation {
-    0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--spark-x), var(--spark-y)) scale(0);
-        opacity: 0;
-    }
-}
-
-/* Estilos para el efecto typing */
-.typing-effect {
-    position: relative;
-    display: inline-block;
-    opacity: 0;
-}
-
-.typing-effect.active {
-    opacity: 1;
-}
-
-.typing-effect span {
-    opacity: 0;
-    display: inline-block;
-}
-
-.typing-effect span.visible {
-    opacity: 1;
-}
-
-.typing-effect .caret {
-    display: inline-block;
-    opacity: 0;
-    color: #F25C1F; /* Considerar var(--primary-color) */
-    margin-left: 1px;
-    font-weight: bold;
-    animation: caret 1s infinite;
-}
-
-.typing-effect .caret.visible {
-    opacity: 1;
-}
-
-@keyframes caret {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-}
-
-.typing-effect.finished .caret {
-    display: none;
-}
-
-/* Estilos para el efecto matrix typing */
-.matrix-typing-effect {
-    position: relative;
-    display: inline-block;
-    opacity: 0;
-}
-
-.matrix-typing-effect.active {
-    opacity: 1;
-}
-
-.matrix-typing-effect span {
-    opacity: 0;
-    display: inline-block;
-}
-
-.matrix-typing-effect span.visible {
-    opacity: 1;
-}
-
-.matrix-typing-effect .matrix-char {
-    display: inline-block;
-    opacity: 0;
-    color: #F25C1F; /* Considerar var(--primary-color) */
-    font-family: monospace;
-    position: absolute;
-    font-size: 1.8em;
-    font-weight: bold;
-    text-shadow: 0 0 5px #F25C1F; /* Considerar var(--primary-color) */
-    animation: matrixFade 0.8s forwards;
-    z-index: 10;
-}
-
-@keyframes matrixFade {
-    0% { 
-        opacity: 0.8; 
-        transform: translateY(-20px);
-        color: rgba(242, 92, 31, 0.6); /* Considerar var(--primary-color) con opacidad */
-    }
-    50% { 
-        opacity: 0.7;
-        color: rgba(242, 92, 31, 0.5);
-    }
-    100% { 
-        opacity: 0.3; 
-        transform: translateY(10px);
-        color: rgba(242, 92, 31, 0.3);
     }
 }
 
@@ -1125,7 +754,7 @@ h1.font-cinderblock {
     font-size: clamp(2.2rem, 7vw, 3.8rem);
     font-weight: 900;
     color: var(--primary-color);
-    margin-top: var(--spacing-2xl); /* Añadido para espaciado superior si es necesario */
+    margin-top: var(--spacing-2xl);
     margin-bottom: var(--spacing-xl);
     letter-spacing: 1px;
     animation: animated-project-title-shadow 8s ease-in-out infinite;
@@ -1141,7 +770,7 @@ h1.font-cinderblock {
 }
 
 .showcase-card {
-    background-color: rgba(var(--primary-color-rgb, 242, 92, 31), 0.03); /* Usando var para el color base */
+    background-color: rgba(var(--primary-color-rgb, 242, 92, 31), 0.03);
     border: 1px solid rgba(var(--primary-color-rgb, 242, 92, 31), 0.1);
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -1151,7 +780,6 @@ h1.font-cinderblock {
     animation: cardFadeIn 0.6s ease forwards;
 }
 
-/* Animación de entrada para las tarjetas */
 @keyframes cardFadeIn {
     to {
         opacity: 1;
@@ -1168,8 +796,8 @@ h1.font-cinderblock {
 .card-image-container {
     position: relative;
     overflow: hidden;
-    height: 250px; /* Altura fija para la imagen */
-    background-color: var(--surface-color); /* Fondo mientras carga la imagen */
+    height: 250px;
+    background-color: var(--surface-color);
 }
 
 .card-image-container img {
@@ -1252,11 +880,11 @@ h1.font-cinderblock {
     font-size: 0.9rem;
     text-decoration: none;
     text-align: center;
-    border-radius: var(--radius-sm); /* Un radio más pequeño para este botón */
+    border-radius: var(--radius-sm);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 8% 100%, 0% 75%);
     transition: background-color var(--transition-normal), transform var(--transition-normal);
-    position: relative; /* Para las chispas */
-    overflow: hidden; /* Para las chispas */
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-read-more:hover {
@@ -1265,51 +893,48 @@ h1.font-cinderblock {
     transform: translateY(-2px);
 }
 
-/* Asegurar que el efecto de chispas se pueda aplicar a estas tarjetas/botones */
 .showcase-card, .btn-read-more {
-    position: relative; /* Necesario para las chispas posicionadas absolutamente */
+    position: relative;
 }
 
-/* Keyframes para la animación de la sombra del título */
 @keyframes animated-project-title-shadow {
     0% {
         text-shadow: 
-            0px 0px 3px black, /* Borde negro más grueso */
+            0px 0px 3px black,
             2px 2px 3px var(--primary-color),
             -2px -2px 5px var(--secondary-color),
             0 0 8px var(--primary-color);
     }
     25% {
         text-shadow: 
-            0px 0px 3px black, /* Borde negro más grueso */
+            0px 0px 3px black,
             -2px 2px 4px var(--secondary-color),
             2px -2px 6px var(--primary-color),
             0 0 10px var(--secondary-color);
     }
     50% {
         text-shadow: 
-            0px 0px 3px black, /* Borde negro más grueso */
+            0px 0px 3px black,
             2px -2px 3px var(--primary-color),
             -2px 2px 5px var(--secondary-color),
             0 0 12px var(--primary-color);
     }
     75% {
         text-shadow: 
-            0px 0px 3px black, /* Borde negro más grueso */
+            0px 0px 3px black,
             -2px -2px 4px var(--secondary-color),
             2px 2px 6px var(--primary-color),
             0 0 10px var(--secondary-color);
     }
     100% {
         text-shadow: 
-            0px 0px 3px black, /* Borde negro más grueso */
+            0px 0px 3px black,
             2px 2px 3px var(--primary-color),
             -2px -2px 5px var(--secondary-color),
             0 0 8px var(--primary-color);
     }
 }
 
-/* Estilos para partículas de llama del título */
 .flame-particle {
     position: absolute;
     bottom: 0;
@@ -1341,5 +966,361 @@ h1.font-cinderblock {
     100% {
         transform: translateY(-160px) scale(0.2);
         opacity: 0;
+    }
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+
+/* Estilos para tablets y desktops pequeños */
+@media (max-width: 1024px) {
+    /* Espaciados de sección */
+    .hero,
+    .features,
+    .project-showcase,
+    .ai-section { /* Aunque ai-section tiene su propio archivo, un padding base aquí puede ser un fallback */
+        padding-top: var(--spacing-xl);
+        padding-bottom: var(--spacing-xl);
+    }
+
+    .section-main-title {
+        font-size: clamp(2.2rem, 6vw, 3.5rem); /* Ligeramente más pequeño */
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .hero-title {
+        font-size: clamp(2.2rem, 7vw, 4.5rem);
+    }
+
+    .tagline {
+        font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+    }
+
+    .description {
+        font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+    }
+
+    .features-grid,
+    .showcase-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--spacing-md);
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+    .feature-title {
+        font-size: 1.4rem;
+    }
+}
+
+/* Estilos para tablets en vertical y móviles grandes */
+@media (max-width: 768px) {
+    /* Espaciados de sección */
+    .hero,
+    .features,
+    .project-showcase,
+    .ai-section {
+        padding-top: var(--spacing-lg);
+        padding-bottom: var(--spacing-lg);
+        padding-left: var(--spacing-sm); /* Menos padding lateral */
+        padding-right: var(--spacing-sm);
+    }
+
+    .section-main-title {
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 7vw, 4rem);
+    }
+
+    .tagline {
+        font-size: clamp(1rem, 3.5vw, 1.5rem);
+    }
+
+    .description {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+    }
+    
+    .cta-container { /* Asegurando que esta regla esté aquí */
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md); /* Aumentar un poco el gap en columna */
+    }
+
+    .cta-button {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .features-grid,
+    .showcase-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    .card-title {
+        font-size: 1.4rem;
+    }
+    .feature-title {
+        font-size: 1.3rem;
+    }
+
+    .nav-menu {
+        display: none; /* Ejemplo: ocultar menú para un menú hamburguesa, si se implementara */
+        /* Aquí irían estilos para un menú móvil si se decide implementar */
+    }
+    .nav-toggle {
+        display: flex; /* Mostrar el botón de hamburguesa */
+    }
+}
+
+/* Estilos para móviles pequeños */
+@media (max-width: 480px) {
+    /* Espaciados de sección */
+    .hero,
+    .features,
+    .project-showcase,
+    .ai-section {
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+
+    .section-main-title {
+        font-size: clamp(1.8rem, 7vw, 2.8rem);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 3.5rem);
+    }
+
+    .tagline {
+        font-size: clamp(0.9rem, 4vw, 1.3rem);
+    }
+    
+    .description {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+    }
+
+    .features-grid,
+    .showcase-grid {
+        grid-template-columns: 1fr; /* Forzar una sola columna */
+        gap: var(--spacing-sm);
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+    .feature-title {
+        font-size: 1.2rem;
+    }
+    .card-description,
+    .feature-description {
+        font-size: 0.85rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* Estilos para la visualización de fuentes */
+.font-preview {
+    margin: 1rem 0;
+    position: relative;
+    display: none;
+}
+
+.font-preview.active {
+    display: block;
+}
+
+.font-preview h1 {
+    position: relative;
+}
+
+/* Efectos de Glitch */
+@keyframes glitch-text {
+    0% {
+        transform: translate(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translate(-5px, 5px);
+        opacity: 0.9;
+    }
+    40% {
+        transform: translate(-5px, -5px);
+        opacity: 0.8;
+        text-shadow: 2px 2px #F25C1F, -2px -2px #0ff;
+    }
+    60% {
+        transform: translate(5px, 5px);
+        opacity: 0.7;
+        text-shadow: -2px 2px #F25C1F, 2px -2px #0ff;
+    }
+    80% {
+        transform: translate(5px, -5px);
+        opacity: 0.6;
+        text-shadow: 2px -2px #F25C1F, -2px 2px #0ff;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 0;
+    }
+}
+
+@keyframes glitch-in {
+    0% {
+        transform: translate(0);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-10px, 10px);
+        opacity: 0.2;
+    }
+    40% {
+        transform: translate(-10px, -10px);
+        opacity: 0.4;
+        text-shadow: 4px 4px #F25C1F, -4px -4px #0ff;
+    }
+    60% {
+        transform: translate(10px, 10px);
+        opacity: 0.6;
+        text-shadow: -4px 4px #F25C1F, 4px -4px #0ff;
+    }
+    80% {
+        transform: translate(10px, -10px);
+        opacity: 0.8;
+        text-shadow: 4px -4px #F25C1F, -4px 4px #0ff;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+.font-preview.glitch-out h1 {
+    animation: glitch-text 0.5s forwards;
+}
+
+.font-preview.glitch-in h1 {
+    animation: glitch-in 0.5s forwards;
+}
+
+/* Estilos para las chispas */
+.spark {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #F25C1F;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes spark-animation {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--spark-x), var(--spark-y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Estilos para el efecto typing */
+.typing-effect {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+.typing-effect.active {
+    opacity: 1;
+}
+
+.typing-effect span {
+    opacity: 0;
+    display: inline-block;
+}
+
+.typing-effect span.visible {
+    opacity: 1;
+}
+
+.typing-effect .caret {
+    display: inline-block;
+    opacity: 0;
+    color: #F25C1F;
+    margin-left: 1px;
+    font-weight: bold;
+    animation: caret 1s infinite;
+}
+
+.typing-effect .caret.visible {
+    opacity: 1;
+}
+
+@keyframes caret {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.typing-effect.finished .caret {
+    display: none;
+}
+
+/* Estilos para el efecto matrix typing */
+.matrix-typing-effect {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+.matrix-typing-effect.active {
+    opacity: 1;
+}
+
+.matrix-typing-effect span {
+    opacity: 0;
+    display: inline-block;
+}
+
+.matrix-typing-effect span.visible {
+    opacity: 1;
+}
+
+.matrix-typing-effect .matrix-char {
+    display: inline-block;
+    opacity: 0;
+    color: #F25C1F;
+    font-family: monospace;
+    position: absolute;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 0 0 5px #F25C1F;
+    animation: matrixFade 0.8s forwards;
+    z-index: 10;
+}
+
+@keyframes matrixFade {
+    0% { 
+        opacity: 0.8; 
+        transform: translateY(-20px);
+        color: rgba(242, 92, 31, 0.6);
+    }
+    50% { 
+        opacity: 0.7;
+        color: rgba(242, 92, 31, 0.5);
+    }
+    100% { 
+        opacity: 0.3; 
+        transform: translateY(10px);
+        color: rgba(242, 92, 31, 0.3);
     }
 }

@@ -166,7 +166,8 @@
 }
 
 .ai-feature-card p {
-    color: rgba(242, 242, 240, 0.8);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -176,29 +177,133 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .ai-subtitle {
+@media (max-width: 1024px) {
+    .ai-section {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .ai-header .ai-subtitle {
         font-size: 1.1rem;
+        max-width: 90%;
     }
-    
+
     .ai-canvas-wrapper {
-        height: 400px;
+        height: 450px; /* Ligeramente menos altura */
     }
-    
+
     .ai-command-input {
-        width: 150px;
-        font-size: 1.2rem;
+        width: 220px; /* Un poco más de espacio si es posible */
     }
     
     .ai-features {
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .ai-section {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    .ai-header .section-main-title { /* Hereda de styles.css, pero podemos ajustar aquí si es necesario */
+        font-size: clamp(2rem, 6vw, 2.8rem); /* Ajuste específico si section-main-title es demasiado grande */
     }
     
-    .ai-upload {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        margin-top: 1rem;
+    .ai-header .ai-subtitle {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .ai-canvas-wrapper {
+        height: 400px;
+        flex-direction: column; /* Apilar controles si es necesario, aunque ya están abajo */
+        padding: var(--spacing-sm);
+    }
+    
+    #ai-canvas-container {
+        height: 300px; /* Reducir altura del canvas en sí */
+    }
+
+    .ai-controls {
+        flex-direction: column; /* Apilar input y hints */
+        align-items: center;
+        gap: var(--spacing-xs);
+        width: 100%;
+    }
+
+    .ai-command-input {
+        width: 80%;
+        max-width: 280px;
+        font-size: 0.9rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .ai-commands {
+        font-size: 0.75rem;
         text-align: center;
+    }
+
+    #ai-upload-wrap {
+        margin-top: var(--spacing-sm);
+        padding: var(--spacing-xs);
+        font-size: 0.9rem;
+    }
+    
+    .ai-features {
+        grid-template-columns: 1fr; /* Una sola columna para las features */
+        gap: var(--spacing-md);
+    }
+
+    .ai-feature-card {
+        padding: var(--spacing-sm);
+    }
+
+    .ai-feature-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .ai-feature-card p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ai-section {
+        padding: var(--spacing-md) var(--spacing-xs);
+    }
+    
+    .ai-header .ai-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .ai-canvas-wrapper {
+        height: 350px;
+        padding: var(--spacing-xs);
+    }
+    
+    #ai-canvas-container {
+        height: 250px; /* Reducir más el canvas */
+    }
+
+    .ai-command-input {
+        width: 90%;
+        font-size: 0.85rem;
+    }
+
+    .ai-commands {
+        font-size: 0.7rem;
+    }
+
+    #ai-upload-wrap {
+        font-size: 0.85rem;
+        padding: calc(var(--spacing-xs) * 0.8);
+    }
+
+    .ai-feature-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .ai-feature-card p {
+        font-size: 0.8rem;
     }
 } 
