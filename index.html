@@ -68,7 +68,7 @@
     <!-- ===== PROJECT SHOWCASE SECTION ===== -->
     <section class="project-showcase" id="proyectos">
         <div class="showcase-container">
-            <h2 class="section-title-showcase">Proyectos Destacados</h2>
+            <h2 class="section-main-title">Proyectos Destacados</h2>
             <div class="showcase-grid">
                 <!-- Card 1 -->
                 <article class="showcase-card">
@@ -132,7 +132,7 @@
     <section class="ai-section" id="inteligencia-artificial">
         <div class="ai-container">
             <div class="ai-header">
-                <h2 class="ai-title">Inteligencia Artificial</h2>
+                <h2 class="section-main-title">Inteligencia Artificial</h2>
                 <p class="ai-subtitle">Explora el futuro de la tecnología con nuestras soluciones impulsadas por IA</p>
             </div>
             
@@ -174,7 +174,7 @@
 
     <section class="features" id="servicios">
         <div class="features-container">
-            <h2 class="features-title">Nuestros Servicios</h2>
+            <h2 class="section-main-title">Nuestros Servicios</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
@@ -677,10 +677,12 @@
             }
 
             try {
-                const showcaseTitle = document.querySelector('.section-title-showcase');
-                if (showcaseTitle) {
+                const mainTitles = document.querySelectorAll('.section-main-title');
+                if (mainTitles.length > 0) {
                     const flameColors = ['#F25C1F', '#C0392B', '#f9d423', '#ff7e5f', '#feb47b']; // Colores tipo llama
-                    createTitleFlameParticles(showcaseTitle, 30, flameColors); // Crear 30 partículas
+                    mainTitles.forEach(titleElement => {
+                        createTitleFlameParticles(titleElement, 30, flameColors); // Crear 30 partículas para cada título
+                    });
                 }
             } catch (e) {
                 console.error("Error initializing title flame particles:", e);

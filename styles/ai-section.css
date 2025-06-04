@@ -5,6 +5,7 @@
     padding: 6rem 2rem;
     background: linear-gradient(180deg, #1a1a1a 0%, #0F0F0F 100%);
     overflow: hidden;
+    z-index: 10;
 }
 
 .ai-container {
@@ -19,16 +20,6 @@
     margin-bottom: 4rem;
     position: relative;
     z-index: 10;
-}
-
-.ai-title {
-    font-size: 3rem;
-    color: #F25C1F;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, #F25C1F, #F2F2F0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .ai-subtitle {
@@ -186,10 +177,6 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .ai-title {
-        font-size: 2rem;
-    }
-    
     .ai-subtitle {
         font-size: 1.1rem;
     }

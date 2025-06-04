@@ -425,24 +425,12 @@ body {
 /* ===== FEATURES SECTION ===== */
 .features {
     padding: var(--spacing-2xl) var(--spacing-md);
-    background: linear-gradient(180deg, var(--background-color) 0%, var(--surface-color) 100%);
+    background: linear-gradient(180deg, var(--surface-color) 0%, var(--background-color) 100%);
 }
 
 .features-container {
     max-width: 1400px;
     margin: 0 auto;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: var(--spacing-2xl);
-}
-
-.features-title {
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    margin-bottom: var(--spacing-sm);
-    color: var(--primary-color);
-    font-weight: 900;
 }
 
 .features-subtitle {
@@ -756,26 +744,14 @@ h1.font-cinderblock {
 }
 
 .features { /* Sección features */
-    padding: 6rem 2rem; /* Considerar var(--spacing-2xl) var(--spacing-md) */
-    background: linear-gradient(180deg, #0F0F0F 0%, #1a1a1a 100%); /* Considerar variables */
-}
-
-.features-container {
-    max-width: 1200px; /* Conflicto con styles.css, este prevalece */
-    margin: 0 auto;
-}
-
-.features-title { /* Título de la sección features */
-    text-align: center;
-    font-size: 3rem; /* Conflicto con styles.css, este prevalece */
-    margin-bottom: 4rem; /* Considerar var(--spacing-xl) o var(--spacing-2xl) */
-    color: #F25C1F; /* Considerar var(--primary-color) */
+    padding: var(--spacing-2xl) var(--spacing-md); /* Unificado, antes 6rem 2rem */
+    background: linear-gradient(180deg, var(--surface-color) 0%, var(--background-color) 100%); /* Unificado */
 }
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Conflicto con styles.css, este prevalece */
-    gap: 2rem; /* Considerar var(--spacing-md) */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Unificado, antes 300px */
+    gap: var(--spacing-md); /* Unificado, antes 2rem */
 }
 
 .feature-card {
@@ -837,8 +813,9 @@ h1.font-cinderblock {
 
 .feature-title { /* Título dentro de la feature-card */
     font-size: 1.5rem;
-    margin-bottom: 1rem; /* Considerar var(--spacing-sm) */
-    color: #F2F2F0; /* Considerar var(--text-primary) */
+    margin-bottom: 1rem; /* Unificado, antes 1rem */
+    color: var(--text-primary); /* Unificado, antes #F2F2F0 */
+    font-weight: 700; /* Añadido para consistencia si es necesario, ya estaba en la base */
 }
 
 .feature-description {
@@ -929,10 +906,6 @@ h1.font-cinderblock {
     .cta-container {
         flex-direction: column;
         align-items: center;
-    }
-    
-    .features-title {
-        font-size: 2rem;
     }
 }
 
@@ -1146,17 +1119,18 @@ h1.font-cinderblock {
     padding: 0 var(--spacing-md);
 }
 
-.section-title-showcase {
+.section-main-title {
     text-align: center;
     font-family: var(--font-brand);
     font-size: clamp(2.2rem, 7vw, 3.8rem);
     font-weight: 900;
     color: var(--primary-color);
+    margin-top: var(--spacing-2xl); /* Añadido para espaciado superior si es necesario */
     margin-bottom: var(--spacing-xl);
     letter-spacing: 1px;
     animation: animated-project-title-shadow 8s ease-in-out infinite;
-    position: relative;
-    overflow: visible;
+    position: relative; 
+    overflow: visible; 
 }
 
 .showcase-grid {
