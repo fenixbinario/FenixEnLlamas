@@ -120,40 +120,38 @@ class NoiseButton extends PIXI.Application {
 
 // Inicialización de los botones
 const setupNoiseButtons = () => {
-    // Botón con borde
-    new NoiseButton({
-        element: document.querySelector(".noise_btn--border"),
-        polygon: "30, 0, 30, 0",
-        borderWidth: 2,
-        borderColor: "0xF25C1F",
-        backgroundAlpha: 0.05
-    });
+    const buttonTypes = [
+        {
+            selector: ".noise_btn--border",
+            options: { polygon: "30, 0, 30, 0", borderWidth: 2, borderColor: "0xF25C1F", backgroundAlpha: 0.05 }
+        },
+        {
+            selector: ".noise_btn--bg",
+            options: { polygon: "30, 0, 30, 0", backgroundColor: "0xF25C1F", backgroundAlpha: 1 }
+        },
+        {
+            selector: ".noise_btn--neon",
+            options: { polygon: "30, 0, 30, 0", borderWidth: 2, borderColor: "0xF25C1F", backgroundColor: "0x0F0F0F", backgroundAlpha: 0.9 }
+        },
+        {
+            selector: ".noise_btn--glitch",
+            options: { polygon: "30, 0, 30, 0", borderWidth: 2, borderColor: "0xC0392B", backgroundColor: "0xC0392B", backgroundAlpha: 0.1 }
+        }
+    ];
 
-    // Botón con fondo
-    new NoiseButton({
-        element: document.querySelector(".noise_btn--bg"),
-        polygon: "30, 0, 30, 0",
-        backgroundColor: "0xF25C1F",
-        backgroundAlpha: 1
-    });
-
-    // Botón neon
-    new NoiseButton({
-        element: document.querySelector(".noise_btn--neon"),
-        polygon: "30, 0, 30, 0",
-        borderWidth: 2,
-        borderColor: "0xF25C1F",
-        backgroundColor: "0x0F0F0F",
-        backgroundAlpha: 0.9
-    });
-
-    // Botón glitch
-    new NoiseButton({
-        element: document.querySelector(".noise_btn--glitch"),
-        polygon: "30, 0, 30, 0",
-        borderWidth: 2,
-        borderColor: "0xC0392B",
-        backgroundColor: "0xC0392B",
-        backgroundAlpha: 0.1
+    buttonTypes.forEach(type => {
+        const elements = document.querySelectorAll(type.selector);
+        elements.forEach(element => {
+            if (element) {
+                try {
+                    new NoiseButton({
+                        element: element,
+                        ...type.options
+                    });
+                } catch (error) {
+                    console.error(`Error initializing NoiseButton for element with selector ${type.selector}:`, element, error);
+                }
+            }
+        });
     });
 }; 

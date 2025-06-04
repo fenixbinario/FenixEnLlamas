@@ -65,6 +65,69 @@
         </div>
     </section>
 
+    <!-- ===== PROJECT SHOWCASE SECTION ===== -->
+    <section class="project-showcase" id="proyectos">
+        <div class="showcase-container">
+            <h2 class="section-title-showcase">Proyectos Destacados</h2>
+            <div class="showcase-grid">
+                <!-- Card 1 -->
+                <article class="showcase-card">
+                    <div class="card-image-container">
+                        <img src="https://via.placeholder.com/400x250/F25C1F/0F0F0F?text=UV+Sense" alt="Proyecto UV Sense">
+                        <div class="card-image-overlay">
+                            <a href="#" class="card-project-link" aria-label="Ver proyecto UV Sense">
+                                <span class="link-icon">🔗</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">UV Sense</h3>
+                        <p class="card-description">Una vez más os presento un proyecto en el que he participado y del que estoy contento con el resultado obtenido en tan poco tiempo. Todo el Lab hemos hecho piña para ayudar.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="noise_btn noise_btn--neon"><strong>Continuar leyendo ...</strong></a>
+                    </div>
+                </article>
+                <!-- Card 2 -->
+                <article class="showcase-card">
+                    <div class="card-image-container">
+                        <img src="https://via.placeholder.com/400x250/F25C1F/0F0F0F?text=Digital+Nomad" alt="Proyecto Digital Nomad">
+                         <div class="card-image-overlay">
+                            <a href="#" class="card-project-link" aria-label="Ver proyecto Digital Nomad">
+                                <span class="link-icon">🔗</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Nómada Digital IA</h3>
+                        <p class="card-description">Explorando nuevas fronteras con inteligencia artificial para la comunidad de nómadas digitales, facilitando la vida y el trabajo remotos.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="noise_btn noise_btn--neon"><strong>Continuar leyendo ...</strong></a>
+                    </div>
+                </article>
+                <!-- Card 3 -->
+                <article class="showcase-card">
+                    <div class="card-image-container">
+                        <img src="https://via.placeholder.com/400x250/F25C1F/0F0F0F?text=Future+City" alt="Proyecto Future City">
+                        <div class="card-image-overlay">
+                            <a href="#" class="card-project-link" aria-label="Ver proyecto Future City">
+                                <span class="link-icon">🔗</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Ciudad del Futuro</h3>
+                        <p class="card-description">Un concepto innovador de urbanismo sostenible, integrando tecnología y naturaleza para crear las metrópolis del mañana.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" class="noise_btn noise_btn--neon"><strong>Continuar leyendo ...</strong></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Nueva Sección: Inteligencia Artificial -->
     <section class="ai-section" id="inteligencia-artificial">
         <div class="ai-container">
@@ -488,36 +551,140 @@
             showNextChar();
         }
 
+        // Función para crear partículas de llama para el título de Proyectos Destacados
+        function createTitleFlameParticles(targetElement, numParticles, particleColors) {
+            if (!targetElement) return;
+
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('flame-particle');
+
+                const size = Math.random() * 4 + 2; // Tamaño entre 2px y 6px
+                const startX = Math.random() * targetElement.offsetWidth; // Posición X aleatoria dentro del título
+                const animationDuration = Math.random() * 2 + 2; // Duración entre 2s y 4s
+                const animationDelay = Math.random() * 3; // Retraso hasta 3s
+                const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${startX}px`;
+                particle.style.backgroundColor = color;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${animationDelay}s`;
+                
+                targetElement.appendChild(particle);
+            }
+        }
+
         // Inicializar efectos
         document.addEventListener('DOMContentLoaded', function() {
-            init3DLogo();
-            createParticles();
-            animateCardsOnScroll();
-            createCardParticles();
-            initFontTransitions();
+            // --- Inicializaciones Críticas y Visuales Principales ---
+            try {
+                init3DLogo();
+            } catch (e) {
+                console.error("Error initializing 3D Logo:", e);
+            }
             
-            // Iniciar el efecto typing en ambos textos
+            try {
+                createParticles(); // Partículas del hero
+            } catch (e) {
+                console.error("Error creating hero particles:", e);
+            }
+
+            // --- Inicializaciones de Componentes y Efectos Adicionales ---
+            try {
+                animateCardsOnScroll(); // Animación de tarjetas de características al hacer scroll
+            } catch (e) {
+                console.error("Error initializing card scroll animation:", e);
+            }
+
+            try {
+                createCardParticles(); // Partículas en tarjetas de características
+            } catch (e) {
+                console.error("Error creating feature card particles:", e);
+            }
+            
+            try {
+                initFontTransitions(); // Transiciones de fuentes en el hero
+            } catch (e) {
+                console.error("Error initializing font transitions:", e);
+            }
+            
+            // Efectos de "máquina de escribir" para los taglines
             const revolutionText = document.getElementById('revolution-text');
             const japaneseText = document.getElementById('japanese-text');
             
-            console.log('Elementos encontrados:', { 
-                revolutionText: revolutionText, 
-                japaneseText: japaneseText 
-            });
-
-            // Asegurarnos de que ambos elementos existen
-            if (!revolutionText || !japaneseText) {
-                console.error('No se encontraron los elementos de texto');
-                return;
+            if (revolutionText) {
+                try {
+                    createTypingEffect(revolutionText, 40);
+                } catch (e) {
+                    console.error("Error initializing typing effect for revolutionText:", e);
+                }
+            } else {
+                console.error('Element with ID "revolution-text" not found for typing effect.');
             }
 
-            // Iniciar el primer texto con efecto normal
-            createTypingEffect(revolutionText, 40);
-            console.log('Efecto normal iniciado');
-            
-            // Iniciar el segundo texto con efecto matrix inmediatamente
-            createMatrixTypingEffect(japaneseText, 40);
-            console.log('Efecto matrix iniciado');
+            if (japaneseText) {
+                try {
+                    createMatrixTypingEffect(japaneseText, 40);
+                } catch (e) {
+                    console.error("Error initializing matrix typing effect for japaneseText:", e);
+                }
+            } else {
+                console.error('Element with ID "japanese-text" not found for matrix typing effect.');
+            }
+
+            // Inicialización de botones con ruido (de js/noise-buttons.js)
+            // setupNoiseButtons ya tiene su propio try-catch interno para cada botón
+            if (typeof setupNoiseButtons === 'function') {
+                setupNoiseButtons();
+            } else {
+                console.error('setupNoiseButtons function is not defined.');
+            }
+
+            // Inicialización de AI Canvas (de js/ai-canvas.js)
+            if (window.AICanvas && typeof AICanvas.init === 'function') {
+                try {
+                    AICanvas.init();
+                } catch (e) {
+                    console.error("Error initializing AI Canvas:", e);
+                }
+            } else {
+                console.warn('AICanvas.init function is not available or AICanvas object is not defined.');
+            }
+
+            // Inicialización de chispas para tarjetas de proyectos y sus botones
+            try {
+                const showcaseCards = document.querySelectorAll('.showcase-card');
+                showcaseCards.forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        if (typeof createSparks === 'function') {
+                            createSparks(card, 20); // Chispas en la tarjeta
+                        }
+                    });
+                });
+
+                const readMoreShowcaseButtons = document.querySelectorAll('.showcase-card .noise_btn--neon');
+                readMoreShowcaseButtons.forEach(button => {
+                    button.addEventListener('mouseenter', () => {
+                        if (typeof createSparks === 'function') {
+                            createSparks(button, 15); // Chispas en el botón "Continuar leyendo"
+                        }
+                    });
+                });
+            } catch (e) {
+                console.error("Error initializing sparks for showcase cards/buttons:", e);
+            }
+
+            try {
+                const showcaseTitle = document.querySelector('.section-title-showcase');
+                if (showcaseTitle) {
+                    const flameColors = ['#F25C1F', '#C0392B', '#f9d423', '#ff7e5f', '#feb47b']; // Colores tipo llama
+                    createTitleFlameParticles(showcaseTitle, 30, flameColors); // Crear 30 partículas
+                }
+            } catch (e) {
+                console.error("Error initializing title flame particles:", e);
+            }
         });
 
         // Efecto de parallax suave en el hero
@@ -538,113 +705,9 @@
                 document.querySelector('.font-cinderblock').style.fontFamily = 'Ethnocentric, sans-serif';
             }
         });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            setupNoiseButtons();
-        });
-
-        // Función para el efecto typing
-        function createTypingEffect(element, speed = 50) {
-            // Preparar el elemento
-            const text = element.textContent;
-            element.textContent = '';
-            element.classList.add('typing-effect');
-            
-            // Crear un span para cada carácter, preservando espacios
-            const chars = [];
-            text.split('').forEach(char => {
-                const span = document.createElement('span');
-                if (char === ' ') {
-                    span.innerHTML = '&nbsp;'; // Usar espacio no rompible para espacios
-                } else {
-                    span.textContent = char;
-                }
-                element.appendChild(span);
-                chars.push(span);
-
-                // Añadir el caret después de cada carácter
-                const caret = document.createElement('span');
-                caret.textContent = '|';
-                caret.className = 'caret';
-                element.appendChild(caret);
-                chars.push(caret);
-            });
-
-            // Función para crear chispas
-            function createTypingSpark(char) {
-                // No crear chispas para espacios en blanco o caret
-                if (char.innerHTML === '&nbsp;' || char.classList.contains('caret')) return;
-
-                const spark = document.createElement('div');
-                spark.className = 'spark';
-                
-                // Posición inicial
-                const rect = char.getBoundingClientRect();
-                const elementRect = element.getBoundingClientRect();
-                
-                spark.style.left = (rect.left - elementRect.left) + 'px';
-                spark.style.top = (rect.top - elementRect.top) + 'px';
-                
-                // Dirección aleatoria
-                const angle = Math.random() * Math.PI * 2;
-                const distance = 30 + Math.random() * 50;
-                const sparkX = Math.cos(angle) * distance;
-                const sparkY = Math.sin(angle) * distance;
-                
-                spark.style.setProperty('--spark-x', sparkX + 'px');
-                spark.style.setProperty('--spark-y', sparkY + 'px');
-                
-                // Animación
-                spark.style.animation = `spark-animation ${0.3 + Math.random() * 0.3}s ease-out forwards`;
-                
-                element.appendChild(spark);
-                
-                // Limpiar chispa después de la animación
-                setTimeout(() => spark.remove(), 1000);
-            }
-
-            // Iniciar la animación
-            element.classList.add('active');
-            let index = 0;
-            let previousCaret = null;
-            
-            function showNextChar() {
-                if (index < chars.length) {
-                    // Ocultar el caret anterior si existe
-                    if (previousCaret) {
-                        previousCaret.style.display = 'none';
-                    }
-                    
-                    const currentChar = chars[index];
-                    currentChar.classList.add('visible');
-                    
-                    if (!currentChar.classList.contains('caret')) {
-                        createTypingSpark(currentChar);
-                    } else {
-                        previousCaret = currentChar;
-                    }
-                    
-                    index++;
-                    setTimeout(showNextChar, speed);
-                } else {
-                    element.classList.add('finished');
-                }
-            }
-            
-            showNextChar();
-        }
     </script>
     <!-- JavaScript -->
     <script src="js/noise-buttons.js"></script>
     <script src="js/ai-canvas.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            setupNoiseButtons();
-            // Initialize AI Canvas
-            if (window.AICanvas) {
-                AICanvas.init();
-            }
-        });
-    </script>
 </body>
 </html>
